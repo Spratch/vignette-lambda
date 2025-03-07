@@ -20,7 +20,6 @@ export default function Thumbnail({ names, images, time }: Props) {
           width={500}
           height={300}
           className="h-full w-80 sm:w-[30rem] object-cover object-top"
-          unoptimized
         />
       )}
       {images.foreground && (
@@ -30,7 +29,6 @@ export default function Thumbnail({ names, images, time }: Props) {
           width={300}
           height={300}
           className="absolute top-0 bottom-5 -left-5 h-full w-8/12 sm:w-2xs object-cover object-top drop-shadow-2xl grayscale contrast-125 brightness-90 bg-gradient-to-r from-black via-black/75 to-transparent"
-          unoptimized
         />
       )}
       <div
