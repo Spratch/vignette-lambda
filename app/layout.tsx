@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Jost, Roboto } from "next/font/google";
-import localFont from "next/font/local";
+import { Jost } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Vignette lambda",
@@ -10,16 +9,6 @@ export const metadata: Metadata = {
 
 const jost = Jost({
   subsets: ["latin"],
-  display: "swap"
-});
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  display: "swap"
-});
-
-const anthony = localFont({
-  src: "/fonts/Anthony.woff2",
   display: "swap"
 });
 

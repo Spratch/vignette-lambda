@@ -6,12 +6,12 @@ import {
   getRandomCombination
 } from "@/utils/randomizer";
 import Thumbnail from "@/components/thumbnail";
-import { Copy, Github, RefreshCcw, Wand } from "lucide-react";
+import { Github, RefreshCcw, Wand } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Button } from "react-aria-components";
 import { randomTime } from "@/utils/randomTime";
 import ButtonLambda from "@/components/button";
 import Link from "next/link";
+import { anthony } from "./fonts";
 
 export default function Home() {
   const [combination, setCombination] = useState({
@@ -46,7 +46,7 @@ export default function Home() {
   return (
     <section className="flex flex-col items-center justify-center h-screen gap-y-28">
       <h1
-        className="text-center font-anthony leading-none"
+        className={`${anthony.className} text-center leading-none`}
         style={{ textShadow: "0 0 2rem var(--color-yellow-800)" }}
       >
         <span className="text-6xl sm:text-8xl">Vignette</span>

@@ -1,3 +1,4 @@
+import { roboto } from "@/app/fonts";
 import Image from "next/image";
 
 type Props = {
@@ -67,7 +68,9 @@ export default function Thumbnail({ names, images, time }: Props) {
           </span>
         </p>
       </div>
-      <div className="absolute right-2 bottom-2 px-1 py-px bg-white/20 text-2xs sm:text-xs tabular-nums rounded-sm  backdrop-blur-xs font-roboto font-medium opacity-65 sm:opacity-100">
+      <div
+        className={`${roboto.className} absolute right-2 bottom-2 px-1 py-px bg-white/20 text-2xs sm:text-xs tabular-nums rounded-sm  backdrop-blur-xs font-medium opacity-65 sm:opacity-100`}
+      >
         {time}
       </div>
     </div>
