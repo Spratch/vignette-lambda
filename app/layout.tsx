@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Jost } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Vignette lambda",
@@ -29,6 +30,7 @@ export default function RootLayout({
         className={`${jost.className}  antialiased bg-gradient-to-tl from-black to-yellow-950 text-white font-jost`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
