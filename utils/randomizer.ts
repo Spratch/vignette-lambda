@@ -94,7 +94,7 @@ export const background: Record<string, string> = {
   SCH: "sch.jpg",
   "Action Directe": "action.jpg",
   "Les Brigades Rouges": "rouges.jpg",
-  "Les Black Panthers": "panthers.webp",
+  "Les Black Panthers": "panthers.jpeg",
   "La Fraction Armée Rouge": "rouge.jpg",
   "L'OTAN": "otan.jpg",
   "Le KGB": "kgb.jpg",
@@ -136,7 +136,7 @@ export const background: Record<string, string> = {
   "The Substance": "substance.jpg",
   Parasite: "parasite.jpg",
   "L'URSSAF": "urssaf.webp",
-  "Grey's Anatomy": "anatomy.jpg"
+  "Grey's Anatomy": "anatomy.jpeg"
 };
 
 export const foreground: Record<string, string> = {
@@ -249,7 +249,7 @@ export const foreground: Record<string, string> = {
   "Isabel Allende": "isabel-allende",
   "Idriss Aberkane": "aberkane",
   "Le Pr Raoult": "raoult",
-  "Emmanuel Macron": "macron",
+  "Emmanuel Macron": "macron-",
   "Jean-Luc Godard": "godard",
   "Chico Buarque": "buarque",
   "Ada Lovelace": "lovelace",
@@ -298,7 +298,7 @@ export const foreground: Record<string, string> = {
   Hegel: "hegel",
   "Karl Popper": "popper",
   "Louis-Ferdinand Céline": "celine",
-  "Goebb*ls": "goebbels",
+  "Bruno Retailleau": "retailleau",
   "Alexandre Astier": "astier",
   "Charles Darwin": "darwin",
   "Charles De Gaulle": "de-gaulle",

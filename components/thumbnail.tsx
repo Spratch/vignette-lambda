@@ -43,12 +43,12 @@ export default function Thumbnail({ names, images, time }: Props) {
         <p className="uppercase text-sm sm:text-lg text-center leading-tight">
           Comprendre{" "}
           <span
-            className="font-medium"
+            className="font-medium text-nowrap"
             style={{ textShadow: "0 0 4px gold" }}
           >
             {names.background}
-          </span>{" "}
-          grâce&nbsp;
+          </span>
+          &nbsp;grâce&nbsp;
           {names.foreground.startsWith("Les ")
             ? "aux"
             : names.foreground.startsWith("Le ")
