@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "tailwindcss-react-aria-components";
 
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -9,4 +10,24 @@ body {
   --font-roboto: "Roboto", "sans-serif";
   --font-anthony: "Anthony", "sans-serif";
   --text-2xs: 0.625rem;
+
+  --animate-wand: wand 0.5s cubic-bezier(0.576, 1.957, 0.718, 0.823);
+  @keyframes wand {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(-45deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  --animate-invert: invert 0.5s cubic-bezier(0.576, 1.957, 0.718, 0.823);
+  @keyframes invert {
+    to {
+      transform: rotate(-180deg);
+    }
+  }
 }
