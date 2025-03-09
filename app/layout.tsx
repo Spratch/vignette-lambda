@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Jost } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Vignette lambda",
@@ -24,6 +25,11 @@ export default function RootLayout({
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <Script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="e0f1dd33-816d-40af-b66c-5531d5d639c9"
         />
       </head>
       <body
