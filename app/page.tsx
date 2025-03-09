@@ -44,7 +44,7 @@ export default function Home() {
   }, []);
 
   return (
-    <section className="flex flex-col items-center justify-center h-screen gap-y-28">
+    <section className="flex flex-col items-center justify-evenly h-dvh">
       <h1
         className={`${anthony.className} text-center leading-none`}
         style={{ textShadow: "0 0 2rem var(--color-yellow-800)" }}
