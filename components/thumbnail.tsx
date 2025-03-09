@@ -41,7 +41,7 @@ export default function Thumbnail({ names, images, time }: Props) {
       ></div>
       <div className="flex justify-center pb-1.5 sm:pb-3 pt-16 sm:pt-20 px-2 sm:px-6 absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent">
         <p className="uppercase text-sm sm:text-lg text-center leading-tight">
-          Comprendre{" "}
+          {names.background !== "Toi" ? "Comprendre" : "Te comprendre"}{" "}
           <span
             className="font-medium text-nowrap"
             style={{ textShadow: "0 0 4px gold" }}
