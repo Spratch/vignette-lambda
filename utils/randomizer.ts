@@ -136,7 +136,9 @@ export const background: Record<string, string> = {
   "The Substance": "substance.jpg",
   Parasite: "parasite.jpg",
   "L'URSSAF": "urssaf.webp",
-  "Grey's Anatomy": "anatomy.jpeg"
+  "Grey's Anatomy": "anatomy.jpeg",
+  "Cars 2": "cars.jpg",
+  "Le code de la route": "code-route.jpg"
 };
 
 export const foreground: Record<string, string> = {
@@ -315,7 +317,11 @@ export const foreground: Record<string, string> = {
   SCH: "sch",
   "Didier Eribon": "eribon",
   "Geoffroy de Lagasnerie": "lagasnerie",
-  "Hugo Décrypte": "hugo-decrypte"
+  "Hugo Décrypte": "hugo-decrypte",
+  "Deng Xiaoping": "deng",
+  "Xi Jinping": "xi",
+  "Raphaël Glucksmann": "glucksmann",
+  "Alexander Grothendieck": "grothendieck"
 };
 
 function getRandomElement<T>(array: T[]): T {
