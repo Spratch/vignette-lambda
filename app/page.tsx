@@ -12,16 +12,28 @@ import { randomTime } from "@/utils/randomTime";
 import ButtonLambda from "@/components/button";
 import Link from "next/link";
 import { anthony } from "./fonts";
+import { useSearchParams } from "next/navigation";
 
 export default function Home() {
+  // Default values from url
+  const searchParams = useSearchParams();
+  const params: { [k: string]: string } = Object.fromEntries(searchParams);
+
+  // Combine background and foreground for names and images
   const [combination, setCombination] = useState({
-    background: "",
-    foreground: ""
+    background: searchParams.has("invert") ? params.f : params.b || "",
+    foreground: searchParams.has("invert") ? params.b : params.f || ""
   });
-  const [images, setImages] = useState({ background: "", foreground: "" });
+  const [images, setImages] = useState({
+    background: "/background/" + background[params.b] || "",
+    foreground: "/foreground/" + foreground[params.f] + ".png" || ""
+  });
+  //   const [isInverted, setIsInverted] = useState(false);
+
   const [time, setTime] = useState("10:05");
 
   const generateCombination = () => {
+    // setIsInverted(false);
     const newCombination = getRandomCombination();
     setCombination(newCombination);
     setImages({
@@ -37,11 +49,28 @@ export default function Home() {
       background: combination.foreground,
       foreground: combination.background
     });
+    // setIsInverted((prev) => !prev);
   };
 
   useEffect(() => {
+    if (params.b && params.f) return;
     generateCombination();
   }, []);
+
+  //   const getUrl = () => {
+  //     const sharedParams: Record<string, string> = {
+  //       b: !isInverted ? combination.background : combination.foreground,
+  //       f: !isInverted ? combination.foreground : combination.background
+  //     };
+  //     const url =
+  //       "https://localhost:3000/?" +
+  //       "b=" +
+  //       encodeURI(sharedParams.b) +
+  //       "&f=" +
+  //       encodeURI(sharedParams.f) +
+  //       (isInverted ? "&invert" : "");
+  //     return url;
+  //   };
 
   return (
     <section className="flex flex-col items-center justify-evenly h-dvh">
@@ -72,9 +101,14 @@ export default function Home() {
             Icon={RefreshCcw}
           />
           {/* <ButtonLambda
-            onPress={() => {}}
-            label="Copier"
-            Icon={Copy}
+            onPress={() => shareImage()}
+            label="Partager"
+            Icon={Share}
+          /> */}
+          {/* <ButtonLambda
+            onPress={() => shareImage()}
+            label="Partager"
+            Icon={Share}
           /> */}
         </div>
       </div>

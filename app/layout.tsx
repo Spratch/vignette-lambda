@@ -3,6 +3,7 @@ import "./globals.css";
 import { Jost } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Vignette lambda",
@@ -33,9 +34,9 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${jost.className}  antialiased bg-gradient-to-tl from-black to-yellow-950 text-white font-jost`}
+        className={`${jost.className} overscroll-none  antialiased bg-gradient-to-tl from-black to-yellow-950 text-white font-jost`}
       >
-        {children}
+        <Suspense>{children}</Suspense>
         <Analytics />
       </body>
     </html>
