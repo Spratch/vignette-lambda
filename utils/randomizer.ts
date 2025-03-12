@@ -83,7 +83,7 @@ export const background: Record<string, string> = {
   "McFly et Carlito": "mcfly.jpg",
   Michou: "michou.jpg",
   Inoxtag: "inoxtag.jpg",
-  "Bojack Horseman": "bojack.jpeg",
+  "Bojack Horseman": "bojack.png",
   Vald: "vald.jpeg",
   "Alpha Wann": "alpha.jpg",
   "Les films de Scorsese": "scorsese.jpg",
@@ -138,7 +138,32 @@ export const background: Record<string, string> = {
   "L'URSSAF": "urssaf.webp",
   "Grey's Anatomy": "anatomy.jpeg",
   "Cars 2": "cars.jpg",
-  "Le code de la route": "code-route.jpg"
+  "Le code de la route": "code-route.jpg",
+  "Le Capital": "capital.jpeg",
+  "L'hétéronormativité": "heteronormativite.jpg",
+  "Le patriarcat": "patriarcat.jpeg",
+  "Le nucléaire": "nucleaire.jpg",
+  "La menace nucléaire": "menace.jpeg",
+  "Le dérèglement climatique": "climatique.jpeg",
+  "La cuisine": "cuisine.jpeg",
+  "La conscience de classe": "classe.jpeg",
+  "La lutte des classes": "lutte.webp",
+  "La dictature du prolétariat": "dictature.jpg",
+  "La division du travail": "travail.jpg",
+  "La plus-value": "plus-value.jpeg",
+  "L'endométriose": "endometriose.jpg",
+  "L'internationalisme": "internationalisme.jpg",
+  "La commune de Paris": "commune.jpg",
+  "L'impérialisme": "imperialisme.png",
+  "Le petit prince": "prince.jpeg",
+  "Le château dans le ciel": "chateau.jpg",
+  "Le voyage de Chihiro": "chihiro.jpg",
+  "Le tombeau des lucioles": "lucioles.jpeg",
+  "Princesse Mononoké": "mononoke.jpeg",
+  "Le château ambulant": "ambulant.jpg",
+  "La prison": "prison.jpg",
+  Gladiator: "gladiator.jpg",
+  Intouchables: "intouchables.jpeg"
 };
 
 export const foreground: Record<string, string> = {
@@ -321,7 +346,18 @@ export const foreground: Record<string, string> = {
   "Deng Xiaoping": "deng",
   "Xi Jinping": "xi",
   "Raphaël Glucksmann": "glucksmann",
-  "Alexander Grothendieck": "grothendieck"
+  "Alexander Grothendieck": "grothendieck",
+  "Nathalie Arthaud": "arthaud",
+  "Arlette Laguiller": "laguiller",
+  "Jacques Lacan": "lacan",
+  "Félix Guattari": "guattari",
+  Rohff: "rohff",
+  "Diego Maradona": "maradona",
+  "Al Capone": "capone",
+  "Augustin Shackelpopoulos": "shackelpopoulos",
+  "La Bible": "bible",
+  "Le Code Civil": "code-civil",
+  "Le Petit Livre Rouge": "livre-rouge"
 };
 
 function getRandomElement<T>(array: T[]): T {
