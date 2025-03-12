@@ -16,6 +16,7 @@ export default function Thumbnail({ names, images, time }: Props) {
       {images.background && (
         <Image
           src={images.background}
+          overrideSrc={images.background}
           alt={names.background}
           width={500}
           height={300}
@@ -25,6 +26,7 @@ export default function Thumbnail({ names, images, time }: Props) {
       {images.foreground && (
         <Image
           src={images.foreground}
+          overrideSrc={images.foreground}
           alt={names.foreground}
           width={300}
           height={300}

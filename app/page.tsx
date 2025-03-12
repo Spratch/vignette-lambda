@@ -13,6 +13,8 @@ import ButtonLambda from "@/components/button";
 import Link from "next/link";
 import { anthony } from "./fonts";
 import { useSearchParams } from "next/navigation";
+import CopyButton from "@/components/copyButton";
+import ShareButton from "@/components/shareButton";
 
 export default function Home() {
   // Default values from url
@@ -55,7 +57,7 @@ export default function Home() {
   useEffect(() => {
     if (params.b && params.f) return;
     generateCombination();
-  }, []);
+  }, [params.b, params.f]);
 
   //   const getUrl = () => {
   //     const sharedParams: Record<string, string> = {
@@ -63,7 +65,7 @@ export default function Home() {
   //       f: !isInverted ? combination.foreground : combination.background
   //     };
   //     const url =
-  //       "https://localhost:3000/?" +
+  //       "http://localhost:3000/?" +
   //       "b=" +
   //       encodeURI(sharedParams.b) +
   //       "&f=" +
@@ -100,16 +102,9 @@ export default function Home() {
             label="Inverser"
             Icon={RefreshCcw}
           />
-          {/* <ButtonLambda
-            onPress={() => shareImage()}
-            label="Partager"
-            Icon={Share}
-          /> */}
-          {/* <ButtonLambda
-            onPress={() => shareImage()}
-            label="Partager"
-            Icon={Share}
-          /> */}
+
+          <CopyButton combination={combination} />
+          <ShareButton combination={combination} />
         </div>
       </div>
       <div className="bg-white rounded-full">
