@@ -68,7 +68,7 @@ export const background: Record<string, string> = {
   "Twin Peaks": "twin-peaks.jpeg",
   "Brooklyn Nine-Nine": "brooklyn.jpg",
   "The Office": "office.jpg",
-  "Breaking Bad": "breaking-bad.jpg",
+  "Breaking Bad": "breaking-bad.jpeg",
   "Wallace et Gromit": "wallace.jpg",
   "Le Cerfa 15481*01": "cerfa.jpg",
   "Lana del Rey": "lana.jpeg",
@@ -143,7 +143,7 @@ export const background: Record<string, string> = {
   "L'hétéronormativité": "heteronormativite.jpg",
   "Le patriarcat": "patriarcat.jpeg",
   "Le nucléaire": "nucleaire.jpg",
-  "La menace nucléaire": "menace.jpeg",
+  "La menace nucléaire": "menace.jpg",
   "Le dérèglement climatique": "climatique.jpeg",
   "La cuisine": "cuisine.jpeg",
   "La conscience de classe": "classe.jpeg",
@@ -163,5 +163,5 @@ export const background: Record<string, string> = {
   "Le château ambulant": "ambulant.jpg",
   "La prison": "prison.jpg",
   Gladiator: "gladiator.jpg",
-  Intouchables: "intouchables.jpeg"
+  Intouchables: "intouchables.jpg"
 };
