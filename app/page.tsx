@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  background,
-  foreground,
-  getRandomCombination
-} from "@/utils/randomizer";
+import { getRandomCombination } from "@/utils/randomizer";
 import Thumbnail from "@/components/thumbnail";
 import { Github, RefreshCcw, Wand } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -13,6 +9,8 @@ import ButtonLambda from "@/components/button";
 import Link from "next/link";
 import { anthony } from "./fonts";
 import { useSearchParams } from "next/navigation";
+import { background } from "@/utils/background";
+import { foreground } from "@/utils/foreground";
 
 export default function Home() {
   // Default values from url
@@ -55,7 +53,7 @@ export default function Home() {
   useEffect(() => {
     if (params.b && params.f) return;
     generateCombination();
-  }, []);
+  }, [params.b, params.f]);
 
   //   const getUrl = () => {
   //     const sharedParams: Record<string, string> = {
