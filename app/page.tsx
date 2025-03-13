@@ -2,7 +2,7 @@
 
 import { getRandomCombination } from "@/utils/randomizer";
 import Thumbnail from "@/components/thumbnail";
-import { Github, RefreshCcw, Wand } from "lucide-react";
+import { Check, Github, LinkIcon, RefreshCcw, Wand } from "lucide-react";
 import { useEffect, useState } from "react";
 import { randomTime } from "@/utils/randomTime";
 import ButtonLambda from "@/components/button";
@@ -26,12 +26,12 @@ export default function Home() {
     background: "/background/" + background[params.b] || "",
     foreground: "/foreground/" + foreground[params.f] + ".png" || ""
   });
-  //   const [isInverted, setIsInverted] = useState(false);
+  const [isInverted, setIsInverted] = useState(false);
 
   const [time, setTime] = useState("10:05");
 
   const generateCombination = () => {
-    // setIsInverted(false);
+    setIsInverted(false);
     const newCombination = getRandomCombination();
     setCombination(newCombination);
     setImages({
@@ -47,7 +47,7 @@ export default function Home() {
       background: combination.foreground,
       foreground: combination.background
     });
-    // setIsInverted((prev) => !prev);
+    setIsInverted((prev) => !prev);
   };
 
   useEffect(() => {
@@ -55,20 +55,27 @@ export default function Home() {
     generateCombination();
   }, [params.b, params.f]);
 
-  //   const getUrl = () => {
-  //     const sharedParams: Record<string, string> = {
-  //       b: !isInverted ? combination.background : combination.foreground,
-  //       f: !isInverted ? combination.foreground : combination.background
-  //     };
-  //     const url =
-  //       "https://localhost:3000/?" +
-  //       "b=" +
-  //       encodeURI(sharedParams.b) +
-  //       "&f=" +
-  //       encodeURI(sharedParams.f) +
-  //       (isInverted ? "&invert" : "");
-  //     return url;
-  //   };
+  const getUrl = () => {
+    const sharedParams: Record<string, string> = {
+      b: !isInverted ? combination.background : combination.foreground,
+      f: !isInverted ? combination.foreground : combination.background
+    };
+    const url =
+      process.env.NEXT_PUBLIC_HOST +
+      "/?b=" +
+      encodeURI(sharedParams.b) +
+      "&f=" +
+      encodeURI(sharedParams.f) +
+      (isInverted ? "&invert" : "");
+    return url;
+  };
+
+  const [isCopied, setIsCopied] = useState(false);
+  const copyUrl = () => {
+    navigator.clipboard.writeText(getUrl());
+    setIsCopied(true);
+    setTimeout(() => setIsCopied(false), 2000);
+  };
 
   return (
     <section className="flex flex-col items-center justify-evenly h-dvh">
@@ -98,16 +105,12 @@ export default function Home() {
             label="Inverser"
             Icon={RefreshCcw}
           />
-          {/* <ButtonLambda
-            onPress={() => shareImage()}
-            label="Partager"
-            Icon={Share}
-          /> */}
-          {/* <ButtonLambda
-            onPress={() => shareImage()}
-            label="Partager"
-            Icon={Share}
-          /> */}
+          <ButtonLambda
+            onPress={copyUrl}
+            label={isCopied ? "Copié !" : "Copier le lien"}
+            Icon={isCopied ? Check : LinkIcon}
+            text={false}
+          />
         </div>
       </div>
       <div className="bg-white rounded-full">

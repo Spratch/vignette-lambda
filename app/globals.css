@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @plugin "tailwindcss-react-aria-components";
 
+html,
+body {
+  overscroll-behavior: none;
+}
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
