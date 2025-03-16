@@ -159,14 +159,14 @@ export default function Home() {
                 <p>
                   Vignette lambda est un générateur de vignettes de vidéos
                   fictives. Les images sont choisies aléatoirement dans une
-                  liste pré-établie. Il s'agit d'un petit site pour parodier le
-                  genre de vidéos que l'on peut trouver sur YouTube. Rien de
-                  plus.
+                  liste pré-établie. Il s&apos;agit d&apos;un petit site pour
+                  parodier le genre de vidéos que l&apos;on peut trouver sur
+                  YouTube. Rien de plus.
                 </p>
                 <h3 className="text-xl font-medium mt-3">Images</h3>
                 <p>
-                  Les images proviennent d'origines diverses, je n'ai aucun
-                  droit dessus.{" "}
+                  Les images proviennent d&apos;origines diverses, je n&apos;ai
+                  aucun droit dessus.{" "}
                   <a
                     href="mailto:legislaturesfr@gmail.com"
                     target="_blank"
@@ -174,7 +174,7 @@ export default function Home() {
                   >
                     Contactez moi
                   </a>{" "}
-                  si vous souhaitez que j'en retire.
+                  si vous souhaitez que j&apos;en retire.
                 </p>
                 <h3 className="text-xl font-medium mt-3">Typographies</h3>
                 <p>
