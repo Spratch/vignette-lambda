@@ -155,7 +155,9 @@ export default function Home() {
               className={`w-full max-w-lg bg-white dark:bg-neutral-800 rounded-xl p-6 overflow-hidden border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100`}
             >
               <Dialog className="outline-none">
-                <h2 className="text-2xl font-bold mb-4">À propos</h2>
+                <h2 className="text-3xl uppercase mb-2 font-basteleur">
+                  À propos
+                </h2>
                 <p>
                   Vignette lambda est un générateur de vignettes de vidéos
                   fictives. Les images sont choisies aléatoirement dans une
@@ -163,7 +165,7 @@ export default function Home() {
                   parodier le genre de vidéos que l&apos;on peut trouver sur
                   YouTube. Rien de plus.
                 </p>
-                <h3 className="text-xl font-medium mt-3">Images</h3>
+                <h3 className="text-xl mt-3 font-basteleur">Images</h3>
                 <p>
                   Les images proviennent d&apos;origines diverses, je n&apos;ai
                   aucun droit dessus.{" "}
@@ -176,7 +178,7 @@ export default function Home() {
                   </a>{" "}
                   si vous souhaitez que j&apos;en retire.
                 </p>
-                <h3 className="text-xl font-medium mt-3">Typographies</h3>
+                <h3 className="text-xl mt-3 font-basteleur">Typographies</h3>
                 <p>
                   Basteleur par Keussel. Distribué par{" "}
                   <a
