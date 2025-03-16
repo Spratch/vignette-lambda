@@ -12,7 +12,7 @@ body {
 @theme {
   --font-jost: "Jost", "sans-serif";
   --font-roboto: "Roboto", "sans-serif";
-  --font-anthony: "Anthony", "sans-serif";
+  --font-basteleur: "Basteleur", "sans-serif";
   --text-2xs: 0.625rem;
 
   --animate-wand: wand 0.5s cubic-bezier(0.576, 1.957, 0.718, 0.823);

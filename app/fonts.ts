@@ -6,7 +6,7 @@ export const roboto = Roboto({
   display: "swap"
 });
 
-export const anthony = localFont({
-  src: "/fonts/Anthony.woff2",
+export const basteleur = localFont({
+  src: "/fonts/Basteleur-Bold.woff2",
   display: "swap"
 });
