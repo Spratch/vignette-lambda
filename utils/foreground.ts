@@ -189,5 +189,6 @@ export const foreground: Record<string, string> = {
   "Augustin Shackelpopoulos": "shackelpopoulos",
   "La Bible": "bible",
   "Le Code Civil": "code-civil",
-  "Le Petit Livre Rouge": "livre-rouge"
+  "Le Petit Livre Rouge": "livre-rouge",
+  Favé: "fave"
 };
