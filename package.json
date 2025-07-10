@@ -24,6 +24,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
+    "eslint-plugin-react-hooks-extra": "^1.52.2",
     "prettier": "^3.5.3",
     "tailwindcss": "^4",
     "tailwindcss-react-aria-components": "^2.0.0",

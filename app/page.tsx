@@ -10,7 +10,7 @@ import {
   RefreshCcw,
   Wand
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { randomTime } from "@/utils/randomTime";
 import ButtonLambda from "@/components/button";
 import Link from "next/link";
@@ -31,17 +31,44 @@ export default function Home() {
   const params: { [k: string]: string } = Object.fromEntries(searchParams);
 
   // Combine background and foreground for names and images
-  const [combination, setCombination] = useState({
-    background: searchParams.has("invert") ? params.f : params.b || "",
-    foreground: searchParams.has("invert") ? params.b : params.f || ""
-  });
-  const [images, setImages] = useState({
-    background: "/background/" + background[params.b] || "",
-    foreground: "/foreground/" + foreground[params.f] + ".png" || ""
-  });
-  const [isInverted, setIsInverted] = useState(false);
+  const getInitialState = () => {
+    if (params.b && params.f) {
+      const isInverted = searchParams.has("invert");
+      const bg = isInverted ? params.f : params.b;
+      const fg = isInverted ? params.b : params.f;
 
-  const [time, setTime] = useState("10:05");
+      return {
+        combination: {
+          background: bg,
+          foreground: fg
+        },
+        images: {
+          background: "/background/" + background[bg],
+          foreground: "/foreground/" + foreground[fg] + ".png"
+        },
+        time: "22:03",
+        isInverted
+      };
+    } else {
+      const newCombination = getRandomCombination();
+      return {
+        combination: newCombination,
+        images: {
+          background: "/background/" + background[newCombination.background],
+          foreground:
+            "/foreground/" + foreground[newCombination.foreground] + ".png"
+        },
+        time: randomTime(),
+        isInverted: false
+      };
+    }
+  };
+
+  const initialState = getInitialState();
+  const [combination, setCombination] = useState(initialState.combination);
+  const [images, setImages] = useState(initialState.images);
+  const [isInverted, setIsInverted] = useState(initialState.isInverted);
+  const [time, setTime] = useState(initialState.time);
 
   const generateCombination = () => {
     setIsInverted(false);
@@ -62,11 +89,6 @@ export default function Home() {
     });
     setIsInverted((prev) => !prev);
   };
-
-  useEffect(() => {
-    if (params.b && params.f) return;
-    generateCombination();
-  }, [params.b, params.f]);
 
   const getUrl = () => {
     const sharedParams: Record<string, string> = {
