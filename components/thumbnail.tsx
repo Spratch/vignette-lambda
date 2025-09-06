@@ -18,7 +18,9 @@ export default function Thumbnail({ names, images, time }: Props) {
       {images.background && (
         <MotionImage
           key={images.background}
+          initial={{ filter: "blur(0px)" }}
           animate={{ scale: [1.02, 1] }}
+          exit={{ scale: [1, 0.98], filter: "blur(10px)" }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           src={images.background}
           alt={names.background}
