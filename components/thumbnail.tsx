@@ -1,6 +1,6 @@
 import { roboto } from "@/app/fonts";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 
 type Props = {
   names: {
@@ -15,12 +15,13 @@ export default function Thumbnail({ names, images, time }: Props) {
   const MotionImage = motion.create(Image);
   return (
     <div className="border border-white/10 hover:border-white/20 rounded-xl transition shadow-md sm:shadow-sm sm:hover:shadow-lg shadow-yellow-800/50 overflow-hidden aspect-video flex flex-col justify-end relative">
+      <AnimatePresence>
       {images.background && (
         <MotionImage
           key={images.background}
-          initial={{ filter: "blur(0px)" }}
-          animate={{ scale: [1.02, 1] }}
-          exit={{ scale: [1, 0.98], filter: "blur(10px)" }}
+          initial={{ filter: "blur(10px)", opacity: 0.75 }}
+          animate={{ scale: [1.02, 1], filter: "blur(0px)", opacity: 1 }}
+          exit={{ scale: [1, 0.98], filter: "blur(30px)", opacity: 0.65 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           src={images.background}
           alt={names.background}
@@ -41,6 +42,7 @@ export default function Thumbnail({ names, images, time }: Props) {
           className="absolute top-0 bottom-5 -left-5 h-full w-8/12 sm:w-2xs object-cover object-top drop-shadow-2xl grayscale contrast-125 brightness-90 bg-gradient-to-r from-black via-black/75 to-transparent"
         />
       )}
+      </AnimatePresence>
       <div
         className="absolute inset-0"
         style={{
