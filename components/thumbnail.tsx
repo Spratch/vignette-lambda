@@ -1,5 +1,6 @@
 import { roboto } from "@/app/fonts";
 import Image from "next/image";
+import { motion } from "motion/react";
 
 type Props = {
   names: {
@@ -11,10 +12,14 @@ type Props = {
 };
 
 export default function Thumbnail({ names, images, time }: Props) {
+  const MotionImage = motion.create(Image);
   return (
     <div className="border border-white/10 hover:border-white/20 rounded-xl transition shadow-md sm:shadow-sm sm:hover:shadow-lg shadow-yellow-800/50 overflow-hidden aspect-video flex flex-col justify-end relative">
       {images.background && (
-        <Image
+        <MotionImage
+          key={images.background}
+          animate={{ scale: [1.02, 1] }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
           src={images.background}
           alt={names.background}
           width={500}
@@ -23,7 +28,10 @@ export default function Thumbnail({ names, images, time }: Props) {
         />
       )}
       {images.foreground && (
-        <Image
+        <MotionImage
+          key={images.foreground}
+          animate={{ x: [-10, 0] }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
           src={images.foreground}
           alt={names.foreground}
           width={300}
