@@ -18,11 +18,11 @@ export default function Thumbnail({ names, images, time }: Props) {
       <AnimatePresence mode="wait">
         {images.background && (
           <MotionImage
-            key={images.background}
-            initial={{ filter: "blur(30px)", opacity: 0.75 }}
+            key={names.background}
+            initial={{ filter: "blur(50px)", opacity: 0.75 }}
             animate={{ scale: [1.02, 1], filter: "blur(0px)", opacity: 1 }}
-            exit={{ scale: [1, 0.98], filter: "blur(30px)", opacity: 0.65 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            exit={{ scale: [1, 0.98], filter: "blur(50px)", opacity: 0.65 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
             src={images.background}
             alt={names.background}
             width={500}
@@ -32,11 +32,11 @@ export default function Thumbnail({ names, images, time }: Props) {
         )}
         {images.foreground && (
           <MotionImage
-            key={images.foreground}
+            key={images.foreground + names.foreground}
             initial={{ "--tw-blur": "blur(30px)", opacity: 0.75 }}
             animate={{ x: [-10, 0], "--tw-blur": "blur(0px)", opacity: 1 }}
             exit={{ x: [0, -10], "--tw-blur": "blur(30px)", opacity: 0.65 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
             src={images.foreground}
             alt={names.foreground}
             width={300}
@@ -44,19 +44,20 @@ export default function Thumbnail({ names, images, time }: Props) {
             className="absolute top-0 bottom-5 -left-5 h-full w-8/12 sm:w-2xs object-cover object-top drop-shadow-2xl grayscale contrast-125 brightness-90 bg-gradient-to-r from-black via-black/75 to-transparent"
           />
         )}
-        <div
+        <motion.div
+          key={"overlay" + time}
           className="absolute inset-0"
           style={{
             backdropFilter: "blur(20px)",
             maskImage:
               "radial-gradient(circle, rgba(0,0,0,0) 30%, rgba(0,0,0,1) 100%)"
           }}
-        ></div>
+        ></motion.div>
         <motion.div
           key={names.background + names.foreground}
-          initial={{ y: 10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 10, opacity: 0 }}
+          initial={{ y: 10, opacity: 0, filter: "blur(10px)" }}
+          animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+          exit={{ y: 10, opacity: 0, filter: "blur(10px)" }}
           transition={{ duration: 0.3, ease: "easeOut" }}
           className="flex justify-center pb-1.5 sm:pb-3 pt-16 sm:pt-20 px-2 sm:px-6 absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent"
         >
@@ -86,11 +87,16 @@ export default function Thumbnail({ names, images, time }: Props) {
             </span>
           </p>
         </motion.div>
-        <div
+        <motion.div
+          key={"time" + time}
+          initial={{ filter: "blur(10px)", opacity: 0 }}
+          animate={{ filter: "blur(0px)", opacity: 0.65 }}
+          exit={{ filter: "blur(10px)", opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           className={`${roboto.className} absolute right-2 bottom-2 px-1 py-px bg-white/20 text-2xs sm:text-xs tabular-nums rounded-sm  backdrop-blur-xs font-medium opacity-65 sm:opacity-100`}
         >
           {time}
-        </div>
+        </motion.div>
       </AnimatePresence>
     </div>
   );
