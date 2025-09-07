@@ -19,7 +19,7 @@ export default function Thumbnail({ names, images, time }: Props) {
         {images.background && (
           <MotionImage
             key={images.background}
-            initial={{ filter: "blur(10px)", opacity: 0.75 }}
+            initial={{ filter: "blur(30px)", opacity: 0.75 }}
             animate={{ scale: [1.02, 1], filter: "blur(0px)", opacity: 1 }}
             exit={{ scale: [1, 0.98], filter: "blur(30px)", opacity: 0.65 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
@@ -33,7 +33,7 @@ export default function Thumbnail({ names, images, time }: Props) {
         {images.foreground && (
           <MotionImage
             key={images.foreground}
-            initial={{ "--tw-blur": "blur(10px)", opacity: 0.75 }}
+            initial={{ "--tw-blur": "blur(30px)", opacity: 0.75 }}
             animate={{ x: [-10, 0], "--tw-blur": "blur(0px)", opacity: 1 }}
             exit={{ x: [0, -10], "--tw-blur": "blur(30px)", opacity: 0.65 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
@@ -52,15 +52,15 @@ export default function Thumbnail({ names, images, time }: Props) {
               "radial-gradient(circle, rgba(0,0,0,0) 30%, rgba(0,0,0,1) 100%)"
           }}
         ></div>
-        <div className="flex justify-center pb-1.5 sm:pb-3 pt-16 sm:pt-20 px-2 sm:px-6 absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent">
-          <motion.p
-            key={names.background + names.foreground}
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 10, opacity: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="uppercase text-sm sm:text-lg text-center leading-tight"
-          >
+        <motion.div
+          key={names.background + names.foreground}
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 10, opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="flex justify-center pb-1.5 sm:pb-3 pt-16 sm:pt-20 px-2 sm:px-6 absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent"
+        >
+          <p className="uppercase text-sm sm:text-lg text-center leading-tight">
             {names.background !== "Toi" ? "Comprendre" : "Te comprendre"}{" "}
             <span
               className="font-medium text-nowrap"
@@ -84,8 +84,8 @@ export default function Thumbnail({ names, images, time }: Props) {
                 ? names.foreground.slice(3)
                 : names.foreground}
             </span>
-          </motion.p>
-        </div>
+          </p>
+        </motion.div>
         <div
           className={`${roboto.className} absolute right-2 bottom-2 px-1 py-px bg-white/20 text-2xs sm:text-xs tabular-nums rounded-sm  backdrop-blur-xs font-medium opacity-65 sm:opacity-100`}
         >
