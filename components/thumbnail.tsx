@@ -14,7 +14,7 @@ type Props = {
 export default function Thumbnail({ names, images, time }: Props) {
   const MotionImage = motion.create(Image);
   return (
-    <div className="border border-white/10 hover:border-white/20 rounded-xl transition shadow-md sm:shadow-sm sm:hover:shadow-lg shadow-yellow-800/50 overflow-hidden aspect-video flex flex-col justify-end relative">
+    <div className="border border-white/10 hover:border-white/20 rounded-xl transition shadow-md sm:shadow-sm sm:hover:shadow-lg shadow-yellow-800/50 overflow-hidden aspect-video w-80 sm:w-[30rem] flex flex-col justify-end relative">
       <AnimatePresence mode="wait">
         {images.background && (
           <MotionImage
@@ -27,7 +27,7 @@ export default function Thumbnail({ names, images, time }: Props) {
             alt={names.background}
             width={500}
             height={300}
-            className="h-full w-80 sm:w-[30rem] object-cover object-top"
+            className="h-full w-full object-cover object-top"
           />
         )}
         {images.foreground && (
@@ -89,9 +89,9 @@ export default function Thumbnail({ names, images, time }: Props) {
         </motion.div>
         <motion.div
           key={"time" + time}
-          initial={{ filter: "blur(10px)", opacity: 0 }}
+          initial={{ filter: "blur(10px)", opacity: 0.5 }}
           animate={{ filter: "blur(0px)", opacity: 0.65 }}
-          exit={{ filter: "blur(10px)", opacity: 0 }}
+          exit={{ filter: "blur(10px)", opacity: 0.5 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
           className={`${roboto.className} absolute right-2 bottom-2 px-1 py-px bg-white/20 text-2xs sm:text-xs tabular-nums rounded-sm  backdrop-blur-xs font-medium opacity-65 sm:opacity-100`}
         >
