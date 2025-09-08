@@ -24,7 +24,7 @@ import {
   Modal,
   ModalOverlay
 } from "react-aria-components";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 
 export default function Home() {
   // Default values from url
