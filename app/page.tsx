@@ -24,6 +24,7 @@ import {
   Modal,
   ModalOverlay
 } from "react-aria-components";
+import { motion, AnimatePresence } from "motion/react";
 
 export default function Home() {
   // Default values from url
@@ -112,6 +113,8 @@ export default function Home() {
     setTimeout(() => setIsCopied(false), 2000);
   };
 
+  const MotionModal = motion.create(Modal);
+
   return (
     <section className="flex flex-col items-center justify-evenly h-dvh">
       <h1
@@ -154,13 +157,12 @@ export default function Home() {
       </div>
       <div className="flex gap-4 opacity-80">
         <Link
-          className="flex items-center justify-center rounded-full bg-white text-black transition-all text-nowrap gap-3.5 select-none py-2 px-4 text-base cursor-pointer hover:scale-103 motion-safe:hover:rotate-3 focus-visible:outline-2 outline-offset-2 outline-yellow-700 pressed:scale-95 pressed:shadow shadow-yellow-200 hover:shadow-md"
+          className="flex items-center justify-center rounded-full bg-white text-black transition-all text-nowrap gap-3.5 select-none p-3 text-base cursor-pointer hover:scale-103 motion-safe:hover:rotate-3 focus-visible:outline-2 outline-offset-2 outline-yellow-700 pressed:scale-95 pressed:shadow shadow-yellow-200 hover:shadow-md"
           href="https://github.com/Spratch/vignette-lambda"
           target="_blank"
           title="Contribuer sur GitHub"
         >
           <Github size={18} />
-          Contribuer sur GitHub
         </Link>
         <DialogTrigger>
           <ButtonLambda
@@ -173,8 +175,12 @@ export default function Home() {
             isDismissable
             className={`fixed inset-0 z-50 bg-black/25 flex items-center justify-center p-4 backdrop-blur`}
           >
-            <Modal
-              className={`w-full max-w-lg bg-white dark:bg-neutral-800 rounded-xl p-6 overflow-hidden border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100`}
+            <MotionModal
+              key={"modal"}
+              initial={{ opacity: 0.5, scale: 0.95, translateY: 50 }}
+              animate={{ opacity: 1, scale: 1, translateY: 0 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
+              className={`w-full max-w-lg bg-white dark:bg-neutral-800 rounded-xl p-6 overflow-hidden border origin-bottom border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100`}
             >
               <Dialog className="outline-none">
                 <h2 className="text-3xl uppercase mb-2 font-basteleur">
@@ -224,7 +230,7 @@ export default function Home() {
                   .
                 </p>
               </Dialog>
-            </Modal>
+            </MotionModal>
           </ModalOverlay>
         </DialogTrigger>
       </div>
