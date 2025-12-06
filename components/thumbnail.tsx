@@ -1,6 +1,6 @@
 import { roboto } from "@/app/fonts";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "motion/react";
 
 type Props = {
   names: {
@@ -27,6 +27,7 @@ export default function Thumbnail({ names, images, time }: Props) {
             alt={names.background}
             width={500}
             height={300}
+            priority
             className="h-full w-full object-cover object-top"
           />
         )}
@@ -41,6 +42,7 @@ export default function Thumbnail({ names, images, time }: Props) {
             alt={names.foreground}
             width={300}
             height={300}
+            priority
             className="absolute top-0 bottom-5 -left-5 h-full w-8/12 sm:w-2xs object-cover object-top drop-shadow-2xl grayscale contrast-125 brightness-90 bg-gradient-to-r from-black via-black/75 to-transparent"
           />
         )}

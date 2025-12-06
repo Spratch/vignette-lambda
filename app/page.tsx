@@ -1,7 +1,11 @@
 "use client";
 
-import { getRandomCombination } from "@/utils/randomizer";
+import ButtonLambda from "@/components/button";
 import Thumbnail from "@/components/thumbnail";
+import { background } from "@/utils/background";
+import { foreground } from "@/utils/foreground";
+import { getRandomCombination } from "@/utils/randomizer";
+import { randomTime } from "@/utils/randomTime";
 import {
   Check,
   Github,
@@ -10,21 +14,17 @@ import {
   RefreshCcw,
   Wand
 } from "lucide-react";
-import { useState } from "react";
-import { randomTime } from "@/utils/randomTime";
-import ButtonLambda from "@/components/button";
+import { motion } from "motion/react";
 import Link from "next/link";
-import { basteleur } from "./fonts";
 import { useSearchParams } from "next/navigation";
-import { background } from "@/utils/background";
-import { foreground } from "@/utils/foreground";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogTrigger,
   Modal,
   ModalOverlay
 } from "react-aria-components";
-import { motion } from "motion/react";
+import { basteleur } from "./fonts";
 
 export default function Home() {
   // Default values from url
@@ -71,16 +71,30 @@ export default function Home() {
   const [isInverted, setIsInverted] = useState(initialState.isInverted);
   const [time, setTime] = useState(initialState.time);
 
+  const [nextCombination, setNextCombination] = useState(() =>
+    getRandomCombination()
+  );
+  const [nextImages, setNextImages] = useState(() => {
+    const combo = getRandomCombination();
+    return {
+      background: "/background/" + background[combo.background],
+      foreground: "/foreground/" + foreground[combo.foreground] + ".png"
+    };
+  });
+
   const generateCombination = () => {
     setIsInverted(false);
-    const newCombination = getRandomCombination();
-    setCombination(newCombination);
-    setImages({
-      background: "/background/" + background[newCombination.background],
-      foreground:
-        "/foreground/" + foreground[newCombination.foreground] + ".png"
-    });
+    setCombination(nextCombination);
+    setImages(nextImages);
     setTime(randomTime());
+
+    const newNextCombination = getRandomCombination();
+    setNextCombination(newNextCombination);
+    setNextImages({
+      background: "/background/" + background[newNextCombination.background],
+      foreground:
+        "/foreground/" + foreground[newNextCombination.foreground] + ".png"
+    });
   };
 
   const invertCombination = () => {
@@ -105,6 +119,15 @@ export default function Home() {
       (isInverted ? "&invert" : "");
     return url;
   };
+
+  useEffect(() => {
+    if (nextImages.background && nextImages.foreground) {
+      const preloadBg = new Image();
+      const preloadFg = new Image();
+      preloadBg.src = nextImages.background;
+      preloadFg.src = nextImages.foreground;
+    }
+  }, [nextImages]);
 
   const [isCopied, setIsCopied] = useState(false);
   const copyUrl = () => {
