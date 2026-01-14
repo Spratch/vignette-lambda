@@ -9,9 +9,10 @@ type Props = {
   };
   images: { background: string; foreground: string };
   time: string;
+  nextImages: { background: string; foreground: string };
 };
 
-export default function Thumbnail({ names, images, time }: Props) {
+export default function Thumbnail({ names, images, time, nextImages }: Props) {
   const MotionImage = motion.create(Image);
   return (
     <div className="border border-white/10 hover:border-white/20 rounded-xl transition shadow-md sm:shadow-sm sm:hover:shadow-lg shadow-yellow-800/50 overflow-hidden aspect-video w-80 sm:w-[30rem] flex flex-col justify-end relative">
@@ -27,7 +28,6 @@ export default function Thumbnail({ names, images, time }: Props) {
             alt={names.background}
             width={500}
             height={300}
-            priority
             className="h-full w-full object-cover object-top"
           />
         )}
@@ -42,7 +42,6 @@ export default function Thumbnail({ names, images, time }: Props) {
             alt={names.foreground}
             width={300}
             height={300}
-            priority
             className="absolute top-0 bottom-5 -left-5 h-full w-8/12 sm:w-2xs object-cover object-top drop-shadow-2xl grayscale contrast-125 brightness-90 bg-gradient-to-r from-black via-black/75 to-transparent"
           />
         )}
@@ -100,6 +99,27 @@ export default function Thumbnail({ names, images, time }: Props) {
           {time}
         </motion.div>
       </AnimatePresence>
+      <div
+        className="absolute invisible pointer-events-none size-0"
+        aria-hidden
+      >
+        {nextImages.background && (
+          <Image
+            src={nextImages.background}
+            alt=""
+            width={500}
+            height={300}
+          />
+        )}
+        {nextImages.foreground && (
+          <Image
+            src={nextImages.foreground}
+            alt=""
+            width={300}
+            height={300}
+          />
+        )}
+      </div>
     </div>
   );
 }

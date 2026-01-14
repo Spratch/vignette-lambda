@@ -17,7 +17,7 @@ import {
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Dialog,
   DialogTrigger,
@@ -71,7 +71,7 @@ export default function Home() {
   const [isInverted, setIsInverted] = useState(initialState.isInverted);
   const [time, setTime] = useState(initialState.time);
 
-  // Preload next combination
+  // Generate next combination
   const [nextCombination, setNextCombination] = useState(() =>
     getRandomCombination()
   );
@@ -121,15 +121,6 @@ export default function Home() {
     return url;
   };
 
-  useEffect(() => {
-    if (nextImages.background && nextImages.foreground) {
-      const preloadBg = new Image();
-      const preloadFg = new Image();
-      preloadBg.src = nextImages.background;
-      preloadFg.src = nextImages.foreground;
-    }
-  }, [nextImages]);
-
   const [isCopied, setIsCopied] = useState(false);
   const copyUrl = () => {
     navigator.clipboard.writeText(getUrl());
@@ -159,6 +150,7 @@ export default function Home() {
           names={combination}
           images={images}
           time={time}
+          nextImages={nextImages}
         />
         <div className="flex gap-x-2 gap-y-2 flex-wrap items-center justify-center">
           <ButtonLambda
