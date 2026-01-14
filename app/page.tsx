@@ -47,7 +47,7 @@ export default function Home() {
           background: "/background/" + background[bg],
           foreground: "/foreground/" + foreground[fg] + ".png"
         },
-        time: "22:03",
+        time: randomTime(),
         isInverted
       };
     } else {
@@ -71,14 +71,15 @@ export default function Home() {
   const [isInverted, setIsInverted] = useState(initialState.isInverted);
   const [time, setTime] = useState(initialState.time);
 
+  // Preload next combination
   const [nextCombination, setNextCombination] = useState(() =>
     getRandomCombination()
   );
   const [nextImages, setNextImages] = useState(() => {
-    const combo = getRandomCombination();
     return {
-      background: "/background/" + background[combo.background],
-      foreground: "/foreground/" + foreground[combo.foreground] + ".png"
+      background: "/background/" + background[nextCombination.background],
+      foreground:
+        "/foreground/" + foreground[nextCombination.foreground] + ".png"
     };
   });
 
