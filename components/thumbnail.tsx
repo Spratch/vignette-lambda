@@ -1,6 +1,6 @@
 import { roboto } from "@/app/fonts";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "motion/react";
 
 type Props = {
   names: {
@@ -9,9 +9,10 @@ type Props = {
   };
   images: { background: string; foreground: string };
   time: string;
+  nextImages: { background: string; foreground: string };
 };
 
-export default function Thumbnail({ names, images, time }: Props) {
+export default function Thumbnail({ names, images, time, nextImages }: Props) {
   const MotionImage = motion.create(Image);
   return (
     <div className="border border-white/10 hover:border-white/20 rounded-xl transition shadow-md sm:shadow-sm sm:hover:shadow-lg shadow-yellow-800/50 overflow-hidden aspect-video w-80 sm:w-[30rem] flex flex-col justify-end relative">
@@ -98,6 +99,27 @@ export default function Thumbnail({ names, images, time }: Props) {
           {time}
         </motion.div>
       </AnimatePresence>
+      <div
+        className="absolute invisible pointer-events-none size-0"
+        aria-hidden
+      >
+        {nextImages.background && (
+          <Image
+            src={nextImages.background}
+            alt=""
+            width={500}
+            height={300}
+          />
+        )}
+        {nextImages.foreground && (
+          <Image
+            src={nextImages.foreground}
+            alt=""
+            width={300}
+            height={300}
+          />
+        )}
+      </div>
     </div>
   );
 }

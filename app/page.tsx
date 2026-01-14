@@ -1,7 +1,11 @@
 "use client";
 
-import { getRandomCombination } from "@/utils/randomizer";
+import ButtonLambda from "@/components/button";
 import Thumbnail from "@/components/thumbnail";
+import { background } from "@/utils/background";
+import { foreground } from "@/utils/foreground";
+import { getRandomCombination } from "@/utils/randomizer";
+import { randomTime } from "@/utils/randomTime";
 import {
   Check,
   Github,
@@ -10,21 +14,17 @@ import {
   RefreshCcw,
   Wand
 } from "lucide-react";
-import { useState } from "react";
-import { randomTime } from "@/utils/randomTime";
-import ButtonLambda from "@/components/button";
+import { motion } from "motion/react";
 import Link from "next/link";
-import { basteleur } from "./fonts";
 import { useSearchParams } from "next/navigation";
-import { background } from "@/utils/background";
-import { foreground } from "@/utils/foreground";
+import { useState } from "react";
 import {
   Dialog,
   DialogTrigger,
   Modal,
   ModalOverlay
 } from "react-aria-components";
-import { motion } from "motion/react";
+import { basteleur } from "./fonts";
 
 export default function Home() {
   // Default values from url
@@ -47,7 +47,7 @@ export default function Home() {
           background: "/background/" + background[bg],
           foreground: "/foreground/" + foreground[fg] + ".png"
         },
-        time: "22:03",
+        time: randomTime(),
         isInverted
       };
     } else {
@@ -71,16 +71,31 @@ export default function Home() {
   const [isInverted, setIsInverted] = useState(initialState.isInverted);
   const [time, setTime] = useState(initialState.time);
 
+  // Generate next combination
+  const [nextCombination, setNextCombination] = useState(() =>
+    getRandomCombination()
+  );
+  const [nextImages, setNextImages] = useState(() => {
+    return {
+      background: "/background/" + background[nextCombination.background],
+      foreground:
+        "/foreground/" + foreground[nextCombination.foreground] + ".png"
+    };
+  });
+
   const generateCombination = () => {
     setIsInverted(false);
-    const newCombination = getRandomCombination();
-    setCombination(newCombination);
-    setImages({
-      background: "/background/" + background[newCombination.background],
-      foreground:
-        "/foreground/" + foreground[newCombination.foreground] + ".png"
-    });
+    setCombination(nextCombination);
+    setImages(nextImages);
     setTime(randomTime());
+
+    const newNextCombination = getRandomCombination();
+    setNextCombination(newNextCombination);
+    setNextImages({
+      background: "/background/" + background[newNextCombination.background],
+      foreground:
+        "/foreground/" + foreground[newNextCombination.foreground] + ".png"
+    });
   };
 
   const invertCombination = () => {
@@ -135,6 +150,7 @@ export default function Home() {
           names={combination}
           images={images}
           time={time}
+          nextImages={nextImages}
         />
         <div className="flex gap-x-2 gap-y-2 flex-wrap items-center justify-center">
           <ButtonLambda
