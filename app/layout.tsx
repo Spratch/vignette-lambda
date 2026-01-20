@@ -1,13 +1,16 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { Jost } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import type { Metadata } from "next";
+import { Jost } from "next/font/google";
 import Script from "next/script";
 import { Suspense } from "react";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Vignette lambda",
-  description: "Générateur de vignettes de vidéos fictives"
+  description: "Générateur de vignettes de vidéos fictives",
+  openGraph: {
+    url: `https://${process.env.NEXT_PUBLIC_HOST}/`
+  }
 };
 
 const jost = Jost({
