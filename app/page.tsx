@@ -44,8 +44,8 @@ export default function Home() {
           foreground: fg
         },
         images: {
-          background: "/background/" + background[bg],
-          foreground: "/foreground/" + foreground[fg] + ".png"
+          background: "/background/" + background[params.b],
+          foreground: "/foreground/" + foreground[params.f] + ".png"
         },
         time: randomTime(),
         isInverted
