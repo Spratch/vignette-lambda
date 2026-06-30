@@ -113,7 +113,7 @@ export default function Home() {
     };
     const url =
       process.env.NEXT_PUBLIC_HOST +
-      "/?b=" +
+      "?b=" +
       encodeURI(sharedParams.b) +
       "&f=" +
       encodeURI(sharedParams.f) +
