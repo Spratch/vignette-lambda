@@ -1,8 +1,8 @@
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
-import { Jost } from "next/font/google";
 import Script from "next/script";
 import { Suspense } from "react";
+import { jost } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -12,11 +12,6 @@ export const metadata: Metadata = {
     url: `https://${process.env.NEXT_PUBLIC_HOST}/`
   }
 };
-
-const jost = Jost({
-  subsets: ["latin"],
-  display: "swap"
-});
 
 export default function RootLayout({
   children

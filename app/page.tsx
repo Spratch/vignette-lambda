@@ -154,17 +154,17 @@ export default function Home() {
         />
         <div className="flex gap-x-2 gap-y-2 flex-wrap items-center justify-center">
           <ButtonLambda
-            onPress={generateCombination}
+            onPressAction={generateCombination}
             label="Générer une nouvelle vignette"
             Icon={Wand}
           />
           <ButtonLambda
-            onPress={invertCombination}
+            onPressAction={invertCombination}
             label="Inverser"
             Icon={RefreshCcw}
           />
           <ButtonLambda
-            onPress={copyUrl}
+            onPressAction={copyUrl}
             label={isCopied ? "Copié !" : "Copier le lien"}
             Icon={isCopied ? Check : LinkIcon}
             text={false}
@@ -184,7 +184,7 @@ export default function Home() {
           <ButtonLambda
             label="À propos"
             text={false}
-            onPress={() => {}}
+            onPressAction={() => {}}
             Icon={InfoIcon}
           />
           <ModalOverlay

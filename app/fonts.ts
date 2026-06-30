@@ -1,4 +1,4 @@
-import { Roboto } from "next/font/google";
+import { Jost, Roboto } from "next/font/google";
 import localFont from "next/font/local";
 
 export const roboto = Roboto({
@@ -8,5 +8,10 @@ export const roboto = Roboto({
 
 export const basteleur = localFont({
   src: "/fonts/Basteleur-Bold.woff2",
+  display: "swap"
+});
+
+export const jost = Jost({
+  subsets: ["latin"],
   display: "swap"
 });

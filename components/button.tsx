@@ -5,14 +5,14 @@ import { useState } from "react";
 import { Button } from "react-aria-components";
 
 type Props = {
-  onPress: () => void;
+  onPressAction: () => void;
   label: string;
   Icon: LucideIcon;
   text?: boolean;
 };
 
 export default function ButtonLambda({
-  onPress,
+  onPressAction,
   label,
   Icon,
   text = true
@@ -20,7 +20,7 @@ export default function ButtonLambda({
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
-    onPress();
+    onPressAction();
     setIsClicked(true);
     setTimeout(() => setIsClicked(false), 500);
   };
