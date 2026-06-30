@@ -32,7 +32,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${jost.className} overscroll-none  antialiased bg-gradient-to-tl from-black to-yellow-950 text-white font-jost`}
+        className={`${jost.className} font-jost overscroll-none bg-linear-to-tl from-black to-yellow-950 text-white antialiased`}
       >
         <Suspense>{children}</Suspense>
         <Analytics />

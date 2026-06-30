@@ -23,10 +23,14 @@ export async function GET(request: Request) {
       foreground: fg
     };
     images = {
-      background: "/background/" + background[bg],
-      foreground: "/foreground/" + foreground[fg] + ".png"
+      background: "/background/" + background[params.b],
+      foreground: "/foreground/" + foreground[params.f] + ".png"
     };
-    time = params.time || "53:00";
+    time = params.t || "53:00";
+
+    if (!background[params.b] || !foreground[params.f]) {
+      return new Response("Invalid theme", { status: 400 });
+    }
   } else {
     combination = {
       background: Object.keys(background)[0],
@@ -36,14 +40,14 @@ export async function GET(request: Request) {
       background: "/background/" + background[combination.background],
       foreground: "/foreground/" + foreground[combination.foreground] + ".png"
     };
-    time = params.time || "53:00";
-  }
+    time = params.t || "53:00";
 
-  if (
-    !background[combination.background] ||
-    !foreground[combination.foreground]
-  ) {
-    return new Response("Invalid theme", { status: 400 });
+    if (
+      !background[combination.background] ||
+      !foreground[combination.foreground]
+    ) {
+      return new Response("Invalid theme", { status: 400 });
+    }
   }
 
   const [bgBuffer, fgBuffer] = await Promise.all([
@@ -52,83 +56,77 @@ export async function GET(request: Request) {
   ]);
 
   return new ImageResponse(
-    <div tw="bg-black">
-      <div tw="relative text-white flex w-full flex-col justify-end rounded-xl overflow-hidden border border-white/10">
-        <img
-          src="bg-image"
-          alt=""
-          height={300}
-          width={500}
-          tw="h-full w-full object-cover object-top"
-        />
-        <img
-          src="fg-image"
-          alt=""
-          height={300}
-          width={300}
-          tw="absolute top-0 bottom-5 -left-5 h-full bg-linear-to-r from-black via-black/75 to-transparent object-cover object-top brightness-90 contrast-125 drop-shadow-2xl grayscale w-2xs"
-        />
-        <div
-          tw="absolute inset-0"
-          style={{
-            // backdropFilter: "blur(20px)",
-            maskImage:
-              "radial-gradient(circle, rgba(0,0,0,0) 30%, rgba(0,0,0,1) 100%)"
-          }}
+    <div tw="relative text-white flex w-full flex-col justify-end">
+      <img
+        src="bg-image"
+        alt=""
+        height={288}
+        width={480}
+        tw="h-full w-full object-cover object-top"
+      />
+      <img
+        src="fg-image"
+        alt=""
+        height={288}
+        width={288}
+        tw="absolute top-0 bottom-5 -left-5 h-full bg-linear-to-r from-black via-black/75 to-transparent object-cover object-top brightness-90 contrast-125 drop-shadow-2xl grayscale w-2xs"
+      />
+      <div
+        tw="absolute inset-0 block"
+        style={{
+          // backdropFilter: "blur(20px)",
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          maskImage:
+            "radial-gradient(circle, rgba(0,0,0,0) 30%, rgba(0,0,0,1) 100%)"
+        }}
+      ></div>
+      <div tw="absolute right-0 bottom-0 left-0 flex justify-center bg-linear-to-t from-black to-transparent px-6 pt-20 pb-3">
+        <p
+          style={{ fontFamily: "Jost", fontWeight: 400 }}
+          tw="text-center leading-tight uppercase m-0 text-lg"
         >
-          <div
-            tw="absolute inset-0"
-            style={{ backdropFilter: "blur(20px)" }}
-          ></div>
-        </div>
-        <div tw="absolute right-0 bottom-0 left-0 flex justify-center bg-linear-to-t from-black to-transparent px-6 pt-20 pb-3">
-          <p
-            style={{ fontFamily: "Jost", fontWeight: 400 }}
-            tw="text-center leading-tight uppercase m-0 text-lg"
+          {combination.background !== "Toi" ? "Comprendre" : "Te comprendre"}{" "}
+          <span
+            tw="text-nowrap inline-block"
+            style={{ textShadow: "0 0 4px gold", fontWeight: 500 }}
           >
-            {combination.background !== "Toi" ? "Comprendre" : "Te comprendre"}{" "}
-            <span
-              tw="text-nowrap"
-              style={{ textShadow: "0 0 4px gold", fontWeight: 500 }}
-            >
-              {combination.background}
-            </span>
-            &nbsp;grâce&nbsp;
-            {combination.foreground.startsWith("Les ")
-              ? "aux"
-              : combination.foreground.startsWith("Le ")
-                ? "au"
-                : "à"}{" "}
-            <br />
-            <span
-              tw="block leading-none tracking-wide text-4xl -mt-1.5"
-              style={{
-                textShadow: "0 0 6px gold",
-                fontWeight: 700
-              }}
-            >
-              {combination.foreground.startsWith("Le ") ||
-              combination.foreground.startsWith("Les ")
-                ? combination.foreground.slice(3)
-                : combination.foreground}
-            </span>
-          </p>
-        </div>
-        <div
-          style={{
-            fontFamily: "Roboto",
-            fontVariantNumeric: "tabular-nums",
-            fontWeight: 500
-          }}
-          tw={`absolute right-2 bottom-2 rounded-sm bg-white/20 px-1 py-px backdrop-blur-xs text-xs opacity-100`}
-        >
-          {time}
-        </div>
+            {combination.background}
+          </span>
+          &nbsp;grâce&nbsp;
+          {combination.foreground.startsWith("Les ")
+            ? "aux"
+            : combination.foreground.startsWith("Le ")
+              ? "au"
+              : "à"}{" "}
+          <br />
+          <span
+            tw="inline-block leading-none tracking-wide text-4xl -mt-1.25"
+            style={{
+              textShadow: "0 0 6px gold",
+              fontWeight: 700
+            }}
+          >
+            {combination.foreground.startsWith("Le ") ||
+            combination.foreground.startsWith("Les ")
+              ? combination.foreground.slice(3)
+              : combination.foreground}
+          </span>
+        </p>
+      </div>
+      <div
+        style={{
+          fontFamily: "Roboto",
+          fontVariantNumeric: "tabular-nums",
+          fontWeight: 500
+        }}
+        tw={`absolute right-2 bottom-2 rounded-sm bg-white/20 px-1 py-px backdrop-blur-xs text-xs opacity-100`}
+      >
+        {time}
       </div>
     </div>,
     {
-      width: 501,
-      height: 301,
+      width: 480,
+      height: 288,
       fonts: await googleFonts({
         families: [
           { name: "Jost", weight: [400, 500, 700], style: "normal" },
