@@ -7,24 +7,24 @@ import { foreground } from "@/utils/foreground";
 import { getRandomCombination } from "@/utils/randomizer";
 import { randomTime } from "@/utils/randomTime";
 import {
-  Check,
-  Copy,
-  CopyCheck,
-  Github,
-  InfoIcon,
-  LinkIcon,
-  RefreshCcw,
-  Wand
+    Check,
+    Copy,
+    CopyCheck,
+    Github,
+    InfoIcon,
+    LinkIcon,
+    RefreshCcw,
+    Wand
 } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import {
-  Dialog,
-  DialogTrigger,
-  Modal,
-  ModalOverlay
+    Dialog,
+    DialogTrigger,
+    Modal,
+    ModalOverlay
 } from "react-aria-components";
 import { basteleur } from "./fonts";
 
@@ -116,7 +116,7 @@ export default function Home() {
     const url =
       process.env.NEXT_PUBLIC_HOST +
       (urlTo === "image" ? "/api/generate-image" : "") +
-      "/?b=" +
+      "?b=" +
       encodeURI(sharedParams.b) +
       "&f=" +
       encodeURI(sharedParams.f) +
